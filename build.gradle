@@ -2,10 +2,12 @@ plugins {
 	id 'org.springframework.boot' version '2.2.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
-	id 'application'
+	//id 'application'
 }
 
-mainClassName = "com.example.demo.DemoApplication"
+bootJar {
+	mainClassName = "com.example.demo.DemoApplication"
+}
 
 group = 'com.example'
 version = '0.1.0'
