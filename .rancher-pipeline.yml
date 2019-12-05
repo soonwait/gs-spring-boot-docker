@@ -3,6 +3,6 @@ stages:
   steps:
   - runScriptConfig:
       image: gradle:latest
-      shellScript: pwd
+      shellScript: gradle clean build
 timeout: 60
 notification: {}
