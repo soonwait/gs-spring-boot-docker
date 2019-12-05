@@ -3,6 +3,6 @@ stages:
   steps:
   - runScriptConfig:
       image: gradle:latest
-      shellScript: ./gradlew clean build
+      shellScript: gradlew clean build
 timeout: 60
 notification: {}
