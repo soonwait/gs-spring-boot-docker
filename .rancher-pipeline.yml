@@ -4,5 +4,41 @@ stages:
   - runScriptConfig:
       image: gradle:latest
       shellScript: gradle clean build
+- name: docker
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: springio/gs-spring-boot-docker:latest
+      pushRemote: true
+      registry: 127.0.0.1:34042
+- name: app
+  steps:
+  - publishCatalogConfig:
+      path: ./charts/gs-spring-boot-docker/latest
+      catalogTemplate: gs-spring-boot-docker
+      version: latest
+      gitUrl: http://192.168.1.9:1080/scm/git/rancher/charts.git
+      gitBranch: master
+      gitAuthor: sun_wei
+      gitEmail: sun_wei@cdv.com
+    envFrom:
+    - sourceName: charts-secret-192-168-1-9
+      sourceKey: USERNAME
+      targetKey: USERNAME
+    - sourceName: charts-secret-192-168-1-9
+      sourceKey: PASSWORD
+      targetKey: PASSWORD
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+- name: sss
+  steps:
+  - applyAppConfig:
+      catalogTemplate: cattle-global-data:sunweitest-gs-spring-boot-docker
+      version: latest
+      name: pipeline-app
+      targetNamespace: sunwei
 timeout: 60
 notification: {}
