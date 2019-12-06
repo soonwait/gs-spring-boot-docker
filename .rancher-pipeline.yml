@@ -11,7 +11,7 @@ stages:
       buildContext: .
       tag: springio/gs-spring-boot-docker:latest
       pushRemote: true
-      registry: 127.0.0.1:34042
+      registry: qmt.cdv.com:5443
 - name: app
   steps:
   - publishCatalogConfig:
