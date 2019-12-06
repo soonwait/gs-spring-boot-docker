@@ -1,3 +1,10 @@
+buildscript {
+	repositories {
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+		maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.2.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -24,6 +31,8 @@ configurations {
 }
 
 repositories {
+	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+	maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
 	mavenCentral()
 }
 
